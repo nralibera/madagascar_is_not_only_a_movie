@@ -25,9 +25,9 @@ svg.call(d3.zoom().on('zoom',()=>{
 function drawSecondCountries(mapName,countriesPath,countryData){
     
     const country = countryData.filter(function(d){ return d.map_name==mapName})[0]
-    countriesPath.features = countriesPath.features.filter(function(d){ return d.properties.name==mapName})
-    console.log(countriesPath.features)
-    console.log(mapName)
+    const features = countriesPath.features.filter(function(d){ return d.properties.name==mapName})
+    console.log(features)
+    // console.log(mapName)
     
     const projection2 = d3.geoMercator()
     .center([country.long, country.lat])                 // GPS of location to zoom on
@@ -63,19 +63,18 @@ function drawSecondCountries(mapName,countriesPath,countryData){
     
     // console.log(second_countries.features)
     d3.select(".all_countries")
-        .append("svg")
-        .attr("id", "movable_svg_2")
-        .append("g")
         .selectAll(".second_country")
-        .data(countriesPath.features)
-        .enter()
-        .append("path")
+        .data(features, function(d){return d.properties.name})
+        .join(
+        enter => enter.append("path")
         .attr("class", "second_country")
           .attr("fill", "blue")
           .attr("d", path2)
           .style("stroke", "none")
-        .call(drag);
-           
+          .call(drag),
+        update => update,
+        exit => exit.remove()
+          )
 }
 
 
@@ -122,6 +121,8 @@ Promise.all([
             .style('width', '200px')
             .on("change", function() {
                 const map_name = d3.select(this).property("value");
+                // Remove the previous svg
+                // d3.select(".second_country").remove();
                 drawSecondCountries(map_name,second_countries,all_country_coordinate);
             });
 

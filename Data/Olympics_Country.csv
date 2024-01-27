@@ -1,0 +1,235 @@
+country_noc,country,inter_code,lat,long,real_name,map_name
+AFG,Afghanistan,AF,33.0,65.0,Afghanistan,Afghanistan
+ALB,Albania,AL,41.0,20.0,Albania,Albania
+ALG,Algeria,DZ,28.0,3.0,Algeria,Algeria
+ASA,American Samoa,AS,-14.33,-170.0,American Samoa,
+AND,Andorra,AD,42.5,1.5,Andorra,
+ANG,Angola,AO,-12.5,18.5,Angola,Angola
+ANT,Antigua and Barbuda,AG,17.05,-61.8,Antigua and Barbuda,
+ARG,Argentina,AR,-34.0,-64.0,Argentina,Argentina
+ARM,Armenia,AM,40.0,45.0,Armenia,Armenia
+ARU,Aruba,AW,12.5,-69.97,Aruba,
+ANZ,Australasia,NZ,-41.0,174.0,New Zealand,New Zealand
+AUS,Australia,AU,-27.0,133.0,Australia,Australia
+AUT,Austria,AT,47.33,13.33,Austria,Austria
+AZE,Azerbaijan,AZ,40.5,47.5,Azerbaijan,Azerbaijan
+BRN,Bahrain,BH,26.0,50.55,Bahrain,
+BAN,Bangladesh,BD,24.0,90.0,Bangladesh,Bangladesh
+BAR,Barbados,BB,13.17,-59.53,Barbados,
+BLR,Belarus,BY,53.0,28.0,Belarus,Belarus
+BEL,Belgium,BE,50.83,4.0,Belgium,Belgium
+BIZ,Belize,BZ,17.25,-88.75,Belize,Belize
+BEN,Benin,BJ,9.5,2.25,Benin,Benin
+BER,Bermuda,BM,32.33,-64.75,Bermuda,
+BHU,Bhutan,BT,27.5,90.5,Bhutan,Bhutan
+BOH,Bohemia,CZ,49.75,15.5,Czech Republic,Czechia
+BOL,Bolivia,BO,-17.0,-65.0,Bolivia,Bolivia
+BIH,Bosnia and Herzegovina,BA,44.0,18.0,Bosnia and Herzegovina,Bosnia and Herz.
+BOT,Botswana,BW,-22.0,24.0,Botswana,Botswana
+BRA,Brazil,BR,-10.0,-55.0,Brazil,Brazil
+IVB,British Virgin Islands,VG,18.5,-64.5,"Virgin Islands, British",
+BRU,Brunei Darussalam,BN,4.5,114.67,Brunei Darussalam,Brunei
+BUL,Bulgaria,BG,43.0,25.0,Bulgaria,Bulgaria
+BUR,Burkina Faso,BF,13.0,-2.0,Burkina Faso,Burkina Faso
+BDI,Burundi,BI,-3.5,30.0,Burundi,Burundi
+CAM,Cambodia,KH,13.0,105.0,Cambodia,Cambodia
+CMR,Cameroon,CM,6.0,12.0,Cameroon,Cameroon
+CAN,Canada,CA,60.0,-95.0,Canada,Canada
+CPV,Cape Verde,CV,16.0,-24.0,Cape Verde,
+CAY,Cayman Islands,KY,19.5,-80.5,Cayman Islands,
+CAF,Central African Republic,CF,7.0,21.0,Central African Republic,Central African Rep.
+CHA,Chad,TD,15.0,19.0,Chad,Chad
+CHI,Chile,CL,-30.0,-71.0,Chile,Chile
+TPE,Chinese Taipei,TW,23.5,121.0,Taiwan,Taiwan
+COL,Colombia,CO,4.0,-72.0,Colombia,Colombia
+COM,Comoros,KM,-12.17,44.25,Comoros,
+CGO,Congo,CG,-1.0,15.0,Congo,Congo
+COK,Cook Islands,CK,-21.23,-159.77,Cook Islands,
+CRC,Costa Rica,CR,10.0,-84.0,Costa Rica,Costa Rica
+CIV,Côte d'Ivoire,CI,8.0,-5.0,Cote d'Ivoire,CÃ´te d'Ivoire
+CRT,Crete,GR,39.0,22.0,Greece,Greece
+CRO,Croatia,HR,45.17,15.5,Croatia,Croatia
+CUB,Cuba,CU,21.5,-80.0,Cuba,Cuba
+CYP,Cyprus,CY,35.0,33.0,Cyprus,Cyprus
+CZE,Czech Republic,CZ,49.75,15.5,Czech Republic,Czechia
+TCH,Czechoslovakia,CZ,49.75,15.5,Czech Republic,Czechia
+PRK,Democratic People's Republic of Korea,KP,40.0,127.0,"Korea, Democratic People's Republic of",North Korea
+COD,Democratic Republic of the Congo,CD,0.0,25.0,"Congo, The Democratic Republic of the",Dem. Rep. Congo
+DEN,Denmark,DK,56.0,10.0,Denmark,Denmark
+DJI,Djibouti,DJ,11.5,43.0,Djibouti,Djibouti
+DMA,Dominica,DM,15.42,-61.33,Dominica,
+DOM,Dominican Republic,DO,19.0,-70.67,Dominican Republic,Dominican Rep.
+GDR,East Germany,DE,51.0,9.0,Germany,Germany
+ECU,Ecuador,EC,-2.0,-77.5,Ecuador,Ecuador
+EGY,Egypt,EG,27.0,30.0,Egypt,Egypt
+ESA,El Salvador,SV,13.83,-88.92,El Salvador,El Salvador
+GEQ,Equatorial Guinea,GQ,2.0,10.0,Equatorial Guinea,Eq. Guinea
+ERI,Eritrea,ER,15.0,39.0,Eritrea,Eritrea
+EST,Estonia,EE,59.0,26.0,Estonia,Estonia
+SWZ,Eswatini,ZA,-29.0,24.0,South Africa,South Africa
+ETH,Ethiopia,ET,8.0,38.0,Ethiopia,Ethiopia
+FSM,Federated States of Micronesia,FM,6.92,158.25,"Micronesia, Federated States of",
+FIJ,Fiji,FJ,-18.0,175.0,Fiji,Fiji
+FIN,Finland,FI,64.0,26.0,Finland,Finland
+FRA,France,FR,46.0,2.0,France,France
+GAB,Gabon,GA,-1.0,11.75,Gabon,Gabon
+GEO,Georgia,GE,42.0,43.5,Georgia,Georgia
+GER,Germany,DE,51.0,9.0,Germany,Germany
+GHA,Ghana,GH,8.0,-2.0,Ghana,Ghana
+GBR,Great Britain,GB,54.0,-2.0,United Kingdom,United Kingdom
+GRE,Greece,GR,39.0,22.0,Greece,Greece
+GRN,Grenada,GD,12.12,-61.67,Grenada,
+GUM,Guam,GU,13.47,144.78,Guam,
+GUA,Guatemala,GT,15.5,-90.25,Guatemala,Guatemala
+GUI,Guinea,GN,11.0,-10.0,Guinea,Guinea
+GBS,Guinea Bissau,GW,12.0,-15.0,Guinea-Bissau,Guinea-Bissau
+GUY,Guyana,GY,5.0,-59.0,Guyana,Guyana
+HAI,Haiti,HT,19.0,-72.42,Haiti,Haiti
+HON,Honduras,HN,15.0,-86.5,Honduras,Honduras
+HKG,"Hong Kong, China",HK,22.25,114.17,Hong Kong,
+HUN,Hungary,HU,47.0,20.0,Hungary,Hungary
+ISL,Iceland,IS,65.0,-18.0,Iceland,Iceland
+IND,India,IN,20.0,77.0,India,India
+IOA,Individual Olympic Athletes,XXX,-64.0,-64.0,World Athlete,
+INA,Indonesia,ID,-5.0,120.0,Indonesia,Indonesia
+IRQ,Iraq,IQ,33.0,44.0,Iraq,Iraq
+IRL,Ireland,IE,53.0,-8.0,Ireland,Ireland
+IRI,Islamic Republic of Iran,IR,32.0,53.0,"Iran, Islamic Republic of",Iran
+ISR,Israel,IL,31.5,34.75,Israel,Israel
+ITA,Italy,IT,42.83,12.83,Italy,Italy
+JAM,Jamaica,JM,18.25,-77.5,Jamaica,Jamaica
+JPN,Japan,JP,36.0,138.0,Japan,Japan
+JOR,Jordan,JO,31.0,36.0,Jordan,Jordan
+KAZ,Kazakhstan,KZ,48.0,68.0,Kazakhstan,Kazakhstan
+KEN,Kenya,KE,1.0,38.0,Kenya,Kenya
+KSA,Kingdom of Saudi Arabia,SA,25.0,45.0,Saudi Arabia,Saudi Arabia
+KIR,Kiribati,KI,1.42,173.0,Kiribati,
+COR,Korea Team,KR,37.0,127.5,"Korea, Republic of",South Korea
+KOS,Kosovo,HR,45.17,15.5,Croatia,Croatia
+KUW,Kuwait,KW,29.34,47.66,Kuwait,Kuwait
+KGZ,Kyrgyzstan,KG,41.0,75.0,Kyrgyzstan,Kyrgyzstan
+LAO,Lao People's Democratic Republic,LA,18.0,105.0,Lao People's Democratic Republic,Laos
+LAT,Latvia,LV,57.0,25.0,Latvia,Latvia
+LBN,Lebanon,LB,33.83,35.83,Lebanon,Lebanon
+LES,Lesotho,LS,-29.5,28.5,Lesotho,Lesotho
+LBR,Liberia,LR,6.5,-9.5,Liberia,Liberia
+LBA,Libya,LY,25.0,17.0,Libyan Arab Jamahiriya,Libya
+LIE,Liechtenstein,LI,47.17,9.53,Liechtenstein,
+LTU,Lithuania,LT,56.0,24.0,Lithuania,Lithuania
+LUX,Luxembourg,LU,49.75,6.17,Luxembourg,Luxembourg
+MAD,Madagascar,MG,-20.0,47.0,Madagascar,Madagascar
+MAW,Malawi,MW,-13.5,34.0,Malawi,Malawi
+MAL,Malaya,MY,2.5,112.5,Malaysia,Malaysia
+MAS,Malaysia,MY,2.5,112.5,Malaysia,Malaysia
+MDV,Maldives,MV,3.25,73.0,Maldives,
+MLI,Mali,ML,17.0,-4.0,Mali,Mali
+MLT,Malta,MT,35.83,14.58,Malta,
+MHL,Marshall Islands,MH,9.0,168.0,Marshall Islands,
+MTN,Mauritania,MR,20.0,-12.0,Mauritania,Mauritania
+MRI,Mauritius,MU,-20.28,57.55,Mauritius,
+MEX,Mexico,MX,23.0,-102.0,Mexico,Mexico
+MIX,Mixed team,XXX,-64.0,-64.0,World Athlete,
+MON,Monaco,MC,43.73,7.4,Monaco,
+MGL,Mongolia,MN,46.0,105.0,Mongolia,Mongolia
+MNE,Montenegro,ME,42.0,19.0,Montenegro,Montenegro
+MAR,Morocco,MA,32.0,-5.0,Morocco,Morocco
+MOZ,Mozambique,MZ,-18.25,35.0,Mozambique,Mozambique
+MYA,Myanmar,MM,22.0,98.0,Myanmar,Myanmar
+NAM,Namibia,NA,-22.0,17.0,Namibia,Namibia
+NRU,Nauru,NR,-0.53,166.92,Nauru,
+NEP,Nepal,NP,28.0,84.0,Nepal,Nepal
+NED,Netherlands,NL,52.5,5.75,Netherlands,Netherlands
+AHO,Netherlands Antilles,AN,12.25,-68.75,Netherlands Antilles,
+NZL,New Zealand,NZ,-41.0,174.0,New Zealand,New Zealand
+NFL,Newfoundland,CA,60.0,-95.0,Canada,Canada
+NCA,Nicaragua,NI,13.0,-85.0,Nicaragua,Nicaragua
+NIG,Niger,NE,16.0,8.0,Niger,Niger
+NGR,Nigeria,NG,10.0,8.0,Nigeria,Nigeria
+NBO,North Borneo,ID,-5.0,120.0,Indonesia,Indonesia
+MKD,North Macedonia,MK,41.83,22.0,Macedonia,Macedonia
+YAR,North Yemen,YE,15.0,48.0,Yemen,Yemen
+NOR,Norway,NO,62.0,10.0,Norway,Norway
+OMA,Oman,OM,21.0,57.0,Oman,Oman
+PAK,Pakistan,PK,30.0,70.0,Pakistan,Pakistan
+PLW,Palau,PW,7.5,134.5,Palau,
+PLE,Palestine,PS,32.0,35.25,Palestinian Territory,Palestine
+PAN,Panama,PA,9.0,-80.0,Panama,Panama
+PNG,Papua New Guinea,PG,-6.0,147.0,Papua New Guinea,Papua New Guinea
+PAR,Paraguay,PY,-23.0,-58.0,Paraguay,Paraguay
+CHN,People's Republic of China,CN,35.0,105.0,China,China
+PER,Peru,PE,-10.0,-76.0,Peru,Peru
+PHI,Philippines,PH,13.0,122.0,Philippines,Philippines
+POL,Poland,PL,52.0,20.0,Poland,Poland
+POR,Portugal,PT,39.5,-8.0,Portugal,Portugal
+PUR,Puerto Rico,PR,18.25,-66.5,Puerto Rico,Puerto Rico
+QAT,Qatar,QA,25.5,51.25,Qatar,Qatar
+EOR,Refugee Olympic Team,XXX,-64.0,-64.0,World Athlete,
+KOR,Republic of Korea,KR,37.0,127.5,"Korea, Republic of",South Korea
+MDA,Republic of Moldova,MD,47.0,29.0,"Moldova, Republic of",Moldova
+RHO,Rhodesia,ZW,-20.0,30.0,Zimbabwe,Zimbabwe
+ROC,ROC,TW,23.5,121.0,Taiwan,Taiwan
+ROU,Romania,RO,46.0,25.0,Romania,Romania
+RUS,Russian Federation,RU,60.0,100.0,Russian Federation,Russia
+RWA,Rwanda,RW,-2.0,30.0,Rwanda,Rwanda
+SAA,Saar,DE,51.0,9.0,Germany,Germany
+SKN,Saint Kitts and Nevis,KN,17.33,-62.75,Saint Kitts and Nevis,
+LCA,Saint Lucia,LC,13.88,-61.13,Saint Lucia,
+VIN,Saint Vincent and the Grenadines,VC,13.25,-61.2,Saint Vincent and the Grenadines,
+SAM,Samoa,WS,-13.58,-172.33,Samoa,
+SMR,San Marino,SM,43.77,12.42,San Marino,
+STP,São Tomé and Príncipe,ST,1.0,7.0,Sao Tome and Principe,
+SEN,Senegal,SN,14.0,-14.0,Senegal,Senegal
+SRB,Serbia,RS,44.0,21.0,Serbia,Serbia
+SCG,Serbia and Montenegro,RS,44.0,21.0,Serbia,Serbia
+SEY,Seychelles,SC,-4.58,55.67,Seychelles,
+SLE,Sierra Leone,SL,8.5,-11.5,Sierra Leone,Sierra Leone
+SGP,Singapore,SG,1.37,103.8,Singapore,
+SVK,Slovakia,SK,48.67,19.5,Slovakia,Slovakia
+SLO,Slovenia,SI,46.0,15.0,Slovenia,Slovenia
+SOL,Solomon Islands,SB,-8.0,159.0,Solomon Islands,
+SOM,Somalia,SO,10.0,49.0,Somalia,Somalia
+RSA,South Africa,ZA,-29.0,24.0,South Africa,South Africa
+SSD,South Sudan,SD,15.0,30.0,Sudan,Sudan
+VNM,South Vietnam,VN,16.0,106.0,Vietnam,Vietnam
+YMD,South Yemen,YE,15.0,48.0,Yemen,Yemen
+URS,Soviet Union,RU,60.0,100.0,Russian Federation,Russia
+ESP,Spain,ES,40.0,-4.0,Spain,Spain
+SRI,Sri Lanka,LK,7.0,81.0,Sri Lanka,Sri Lanka
+SUD,Sudan,SD,15.0,30.0,Sudan,Sudan
+SUR,Suriname,SR,4.0,-56.0,Suriname,Suriname
+SWE,Sweden,SE,62.0,15.0,Sweden,Sweden
+SUI,Switzerland,CH,47.0,8.0,Switzerland,Switzerland
+SYR,Syrian Arab Republic,SY,35.0,38.0,Syrian Arab Republic,Syria
+TJK,Tajikistan,TJ,39.0,71.0,Tajikistan,Tajikistan
+THA,Thailand,TH,15.0,100.0,Thailand,Thailand
+BAH,The Bahamas,BS,24.25,-76.0,Bahamas,Bahamas
+GAM,The Gambia,GM,13.47,-16.57,Gambia,Gambia
+TLS,Timor-Leste,ID,-5.0,120.0,Indonesia,Indonesia
+TOG,Togo,TG,8.0,1.17,Togo,Togo
+TGA,Tonga,TO,-20.0,-175.0,Tonga,
+TTO,Trinidad and Tobago,TT,11.0,-61.0,Trinidad and Tobago,Trinidad and Tobago
+TUN,Tunisia,TN,34.0,9.0,Tunisia,Tunisia
+TUR,Türkiye,TR,39.0,35.0,Turkey,Turkey
+TKM,Turkmenistan,TM,40.0,60.0,Turkmenistan,Turkmenistan
+TUV,Tuvalu,TV,-8.0,178.0,Tuvalu,
+UGA,Uganda,UG,1.0,32.0,Uganda,Uganda
+UKR,Ukraine,UA,49.0,32.0,Ukraine,Ukraine
+EUN,Unified Team,XXX,-64.0,-64.0,World Athlete,
+UAE,United Arab Emirates,AE,24.0,54.0,United Arab Emirates,United Arab Emirates
+UAR,United Arab Republic,AE,24.0,54.0,United Arab Emirates,United Arab Emirates
+TAN,United Republic of Tanzania,TZ,-6.0,35.0,"Tanzania, United Republic of",Tanzania
+USA,United States,US,38.0,-97.0,United States,United States of America
+ISV,United States Virgin Islands,VI,18.33,-64.83,"Virgin Islands, U.S.",
+UNK,Unknown,XXX,-64.0,-64.0,World Athlete,
+URU,Uruguay,UY,-33.0,-56.0,Uruguay,Uruguay
+UZB,Uzbekistan,UZ,41.0,64.0,Uzbekistan,Uzbekistan
+VAN,Vanuatu,VU,-16.0,167.0,Vanuatu,Vanuatu
+VEN,Venezuela,VE,8.0,-66.0,Venezuela,Venezuela
+VIE,Vietnam,VN,16.0,106.0,Vietnam,Vietnam
+FRG,West Germany,DE,51.0,9.0,Germany,Germany
+WIF,West Indies Federation,BM,32.33,-64.75,Bermuda,
+YEM,Yemen,YE,15.0,48.0,Yemen,Yemen
+YUG,Yugoslavia,RS,44.0,21.0,Serbia,Serbia
+ZAM,Zambia,ZM,-15.0,30.0,Zambia,Zambia
+ZIM,Zimbabwe,ZW,-20.0,30.0,Zimbabwe,Zimbabwe
+ROC,Russian Olympic Committee,RU,60.0,100.0,Russian Federation,Russia

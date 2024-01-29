@@ -18,6 +18,7 @@ const path = d3.geoPath().projection(projection);
 // Zoom
 svg.call(d3.zoom().on('zoom',()=>{
     d3.select(".all_countries").attr("transform", d3.event.transform);
+    d3.select(".all_regions").attr("transform", d3.event.transform);
     }));
 
 
@@ -124,6 +125,7 @@ function howBig (countries,world,all_country_coordinate,regions){
 function drawRegion(regionData){
     // How to load MDG REGIONS
     svg.append("g")
+        .attr("class", "all_regions")
         .selectAll(".region") 
         .data(regionData.features)
         .join("path")

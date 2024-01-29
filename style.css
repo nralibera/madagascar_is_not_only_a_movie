@@ -20,7 +20,7 @@ select{
   position: absolute;
   top: 2rem;
   left: 2rem;
-  width: 90%;
+  width: 35%;
   z-index: 1000;
   background-color: rgb(255, 255, 255);
   color:  rgb(4, 1, 48);
@@ -32,23 +32,11 @@ select{
   font-family: 'Poppins';
 }
 
-@media (min-width: 600px) {
-  select {
-    top: 5rem;
-    left: 5rem;
-    width: 12rem;
-  }
-}
-
-.region{
-  stroke: rgba(187, 243, 255, 0.16);
-  stroke-width: 0.5px ;
-}
 .randomButton{
   position : absolute;
-  width: 10rem;
-  top: 5rem;
-  left: 18rem;
+  top: 2rem;
+  left: 50%;
+  width: 30%;
   z-index: 1001;
   font-family: 'Poppins';
   border-radius: 5px;
@@ -57,6 +45,25 @@ select{
   background-color:  rgb(5, 0, 58);
   color: #f5f1f1;
 }
+
+@media (min-width: 600px) {
+  select {
+    top: 5rem;
+    left: 5rem;
+    width: 12rem;
+  }
+  .randomButton{
+    top: 5rem;
+    left: 20rem;
+    width: 12rem;
+  }
+}
+
+.region{
+  stroke: rgba(187, 243, 255, 0.16);
+  stroke-width: 0.5px ;
+}
+
 
 .randomButton:hover{
   cursor: pointer;

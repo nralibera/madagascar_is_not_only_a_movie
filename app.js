@@ -22,19 +22,51 @@ svg.call(d3.zoom().on('zoom',()=>{
     d3.select(".all_countries").attr("transform", d3.event.transform);
     }));
 
+
+// // Pattern Creation for Background
+
+// const pattern = svg.append('defs')
+// .append('pattern')
+//   .attr('id', 'greyDots')
+//   .attr('patternUnits', 'userSpaceOnUse')
+//   .attr('width', 4)
+//   .attr('height', 4);
+
+// pattern.append('circle')
+// .attr('cx', 2)
+// .attr('cy', 2)
+// .attr('r', 1);
+
+// const redPattern = svg.append('defs')
+//     .append('pattern')
+//       .attr('id', 'redDots')
+//       .attr('patternUnits', 'userSpaceOnUse')
+//       .attr('width', 4)
+//       .attr('height', 4);
+
+// redPattern.append('circle')
+// .attr('cx', 2)
+// .attr('cy', 2)
+// .attr('r', 1);
+
+
 function drawSecondCountries(mapName,countriesPath,countryData){
     
+    // const firstCountry = countriesPath.features.filter(function(d){ return d.properties.name=="Madagascar"})
     const country = countryData.filter(function(d){ return d.map_name==mapName})[0]
     const features = countriesPath.features.filter(function(d){ return d.properties.name==mapName})
-    console.log(features)
+    // const second_country_group = d3.select(".second_country_group");
+    // console.log(features)
     // console.log(mapName)
     
+
     const projection2 = d3.geoMercator()
     .center([country.long, country.lat])                 // GPS of location to zoom on
     .scale(1500)                       // This is like the zoom
     .translate([ width/2, height/1.5 ])
 
     const path2 = d3.geoPath().projection(projection2);
+    // const pathFirstCountry = path(firstCountry[0]);
 
     // Define the drag behavior using D3's drag() function
     const drag = d3.drag()
@@ -46,36 +78,42 @@ function drawSecondCountries(mapName,countriesPath,countryData){
         const [x, y] = d3.mouse(this);
         d3.select(this).attr('initial-x', x);
         d3.select(this).attr('initial-y', y);
+        
     })
-    .on('drag', function () {
+    .on('drag', function (d) {
         // Calculate the distance moved by the mouse
         const dx = d3.event.x - d3.select(this).attr('initial-x');
         const dy = d3.event.y - d3.select(this).attr('initial-y');
 
         // Update the position of the dragged element during dragging
         d3.select(this).attr('transform', `translate(${dx},${dy})`);
+
     })
     .on('end', function () {
         // Remove the 'active' class when dragging ends
         d3.select(this).classed('active', false);
+        // drawSecondCountries(mapName,countriesPath,countryData)
     });
-    
-    
-    // console.log(second_countries.features)
+
+
     d3.select(".all_countries")
-        .selectAll(".second_country")
+    .selectAll(".second_country")
         .data(features, function(d){return d.properties.name})
         .join(
-        enter => enter.append("path")
+        enter => enter
+        .append("path")
         .attr("class", "second_country")
-          .attr("fill", "blue")
+          .attr("fill", "#FA6900")
+        //   .attr('mask', 'url(#country-mask)')
           .attr("d", path2)
-          .style("stroke", "none")
+        //   .style("stroke", "none")
           .call(drag),
         update => update,
         exit => exit.remove()
           )
 }
+
+
 
 
 // Load external data and boot
@@ -93,6 +131,7 @@ Promise.all([
         let states = topojson.feature(adm_2, adm_2.objects.states);
         
         
+        
         countries.features = countries.features.filter(function(d){ return d.properties.name=="Madagascar"})
         // Filter all_country_coordinate to only those with map_name
         all_country_coordinate = all_country_coordinate.filter(function(d){ return d.map_name!=""})
@@ -101,14 +140,13 @@ Promise.all([
             .attr("class", "all_countries")
             .selectAll(".country")
             .data(countries.features)
-            .enter()
-            .append("path")
+            .join("path")
             .attr("class", "country")
-              .attr("fill", "red")
+              .attr("fill", "#00ccbc")
               .attr("d", path)
-              .style("stroke", "none")
-                                    
- 
+              
+
+
 
                     // Create a dropdown input
             const dropdown = d3.select("body")
@@ -123,6 +161,7 @@ Promise.all([
                 const map_name = d3.select(this).property("value");
                 // Remove the previous svg
                 // d3.select(".second_country").remove();
+                
                 drawSecondCountries(map_name,second_countries,all_country_coordinate);
             });
 

@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background-color: rgb(2, 0, 22);
+    color : white;
+  }
+
+#greyDots{
+fill: rgb(45, 11, 237);
+}
+
+#redDots{
+fill: rgb(255, 2, 2);
+}
+
+.all_countries {
+  isolation: isolate;
+}
+
+
+.second_country {
+  mix-blend-mode: hard-light;
+  /* stroke-width: 2px; 
+  stroke :#00ccbc; */
+}
+
+/* .country{
+  stroke : rgb(2, 0, 22);
+} */

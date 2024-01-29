@@ -18,9 +18,9 @@ body {
 
 select{
   position: absolute;
-  top: 7vh;
-  left: 7vw;
-  width: 10vw;
+  top: 5rem;
+  left: 5rem;
+  width: 12rem;
   z-index: 1000;
   background-color: rgb(255, 255, 255);
   color:  rgb(4, 1, 48);
@@ -28,7 +28,6 @@ select{
   padding: 5px;
   border: none;
   font-size: .8em;
-  width: 10vw;
   margin-bottom: .5em;
   font-family: 'Poppins';
 }
@@ -39,9 +38,9 @@ select{
 }
 .randomButton{
   position : absolute;
-  width: 13vw;
-  top: 7vh;
-  left: 18vw;
+  width: 10rem;
+  top: 5rem;
+  left: 18rem;
   z-index: 1001;
   font-family: 'Poppins';
   border-radius: 5px;

@@ -1,8 +1,8 @@
 // The svg
-var width = window.innerWidth*0.95;
-var height = window.innerHeight*0.95;
+const width = window.innerWidth*0.95;
+const height = window.innerHeight*0.95;
 
-var svg = d3.select("#my_dataviz")
+const svg = d3.select("#my_dataviz")
             .attr("width", width)
             .attr("height", height);
 

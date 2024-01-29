@@ -18,9 +18,9 @@ body {
 
 select{
   position: absolute;
-  top: 5rem;
-  left: 5rem;
-  width: 12rem;
+  top: 2rem;
+  left: 2rem;
+  width: 90%;
   z-index: 1000;
   background-color: rgb(255, 255, 255);
   color:  rgb(4, 1, 48);
@@ -30,6 +30,14 @@ select{
   font-size: .8em;
   margin-bottom: .5em;
   font-family: 'Poppins';
+}
+
+@media (min-width: 600px) {
+  select {
+    top: 5rem;
+    left: 5rem;
+    width: 12rem;
+  }
 }
 
 .region{

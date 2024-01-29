@@ -8,25 +8,50 @@ body {
     color : white;
   }
 
-#greyDots{
-fill: rgb(45, 11, 237);
-}
-
-#redDots{
-fill: rgb(255, 2, 2);
-}
-
 .all_countries {
   isolation: isolate;
 }
 
-
 .second_country {
   mix-blend-mode: hard-light;
-  /* stroke-width: 2px; 
-  stroke :#00ccbc; */
 }
 
-/* .country{
-  stroke : rgb(2, 0, 22);
-} */
+select{
+  position: absolute;
+  top: 7vh;
+  left: 7vw;
+  width: 10vw;
+  z-index: 1000;
+  background-color: rgb(255, 255, 255);
+  color:  rgb(4, 1, 48);
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  font-size: .8em;
+  width: 10vw;
+  margin-bottom: .5em;
+  font-family: 'Poppins';
+}
+
+.region{
+  stroke: rgba(187, 243, 255, 0.16);
+  stroke-width: 0.5px ;
+}
+.randomButton{
+  position : absolute;
+  width: 13vw;
+  top: 7vh;
+  left: 18vw;
+  z-index: 1001;
+  font-family: 'Poppins';
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  background-color:  rgb(5, 0, 58);
+  color: #f5f1f1;
+}
+
+.randomButton:hover{
+  cursor: pointer;
+  background-color:  rgb(9, 0, 102);
+}

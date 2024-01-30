@@ -1,19 +1,22 @@
-// The svg
-const width = window.innerWidth*0.95;
-const height = window.innerHeight*0.95;
+import { howBig } from "./howBig.js";
+import { drawCartogram } from "./cartogram.js";
 
-const svg = d3.select("#my_dataviz")
+// The svg
+export const width = window.innerWidth*0.95;
+export const height = window.innerHeight*0.95;
+
+export const svg = d3.select("#my_dataviz")
             .attr("width", width)
             .attr("height", height);
 
 // Map and projection
-const projection = d3.geoMercator()
+export const projection = d3.geoMercator()
     .center([47.448,-21.397180])        
-    .scale(1500)                      
+    .scale(4000)                      
     .translate([ width/2, height/1.5 ])
 
 
-const path = d3.geoPath().projection(projection);
+export const path = d3.geoPath().projection(projection);
 
 // Zoom
 svg.call(d3.zoom().on('zoom',()=>{
@@ -21,108 +24,8 @@ svg.call(d3.zoom().on('zoom',()=>{
     d3.select(".all_regions").attr("transform", d3.event.transform);
     }));
 
-
-function drawSecondCountries(mapName,countryPathData,centerCoordinateData){
-    let second_countries = topojson.feature(countryPathData, countryPathData.objects.countries);
-    second_countries.features = second_countries.features.filter(function(d){ return d.properties.name==mapName});
-
-    const averageCenter = centerCoordinateData.filter(function(d){ return d.map_name==mapName})[0];
-    const projection2 = d3.geoMercator()
-    .center([averageCenter.long, averageCenter.lat])                
-    .scale(1500)
-    .translate([ width/2, height/1.5 ])
-    const path2 = d3.geoPath().projection(projection2);
-
-    // Define the drag behavior using D3's drag() function
-    const drag = d3.drag()
-    .on('start', function () {
-        // Bring the dragged element to the front
-        d3.select(this).raise().classed('active', true);
-
-        // Record the initial mouse position relative to the dragged element
-        const [x, y] = d3.mouse(this);
-        d3.select(this).attr('initial-x', x);
-        d3.select(this).attr('initial-y', y);
-        
-    })
-    .on('drag', function (d) {
-        // Calculate the distance moved by the mouse
-        const dx = d3.event.x - d3.select(this).attr('initial-x');
-        const dy = d3.event.y - d3.select(this).attr('initial-y');
-
-        // Update the position of the dragged element during dragging
-        d3.select(this).attr('transform', `translate(${dx},${dy})`);
-
-    })
-    .on('end', function () {
-        // Remove the 'active' class when dragging ends
-        d3.select(this).classed('active', false);
-        // drawSecondCountries(mapName,countriesPath,centerCoordinateData)
-    });
-
-    d3.select(".all_countries")
-    .selectAll(".second_country")
-        .data(second_countries.features, function(d){return d.properties.name})
-        .join(
-        enter => enter
-        .append("path")
-        .attr("class", "second_country")
-          .attr("fill", "#FA6900")
-        //   .attr('mask', 'url(#country-mask)')
-          .attr("d", path2)
-        //   .style("stroke", "none")
-          .call(drag),
-        update => update,
-        exit => exit.remove()
-          )
-}
-
-function howBig (countries,world,all_country_coordinate,regions){
-
-    // Draw the map
-    svg.append("g")
-        .attr("class", "all_countries")
-        .selectAll(".country")
-        .data(countries.features)
-        .join("path")
-        .attr("class", "country")
-          .attr("fill", "#00ccbc")
-          .attr("d", path)
-    
-    drawRegion(regions);
-
-    // Create a dropdown input
-    const dropdown = d3.select("body")
-    .append("select")
-    .attr("id", "countrySelect")
-    .on("change", function() {
-        const map_name = d3.select(this).property("value");
-        drawSecondCountries(map_name,world,all_country_coordinate);
-    });
-
-    // Add the country names as options
-    dropdown.selectAll("option")
-    .data(all_country_coordinate)
-    .enter()
-    .append("option")
-    .text(d => d.map_name)  
-    .attr("value", d => d.map_name);
-
-    // Add a random button to trigger the drawSecondCountries function
-    d3.select("body")
-    .append("button")
-    .attr("class", "randomButton")
-    .text("Random Country")
-    .on("click", function() {
-        const randomIndex = Math.floor(Math.random() * all_country_coordinate.length);
-        const map_name = all_country_coordinate[randomIndex].map_name;
-        drawSecondCountries(map_name,world,all_country_coordinate);
-        dropdown.property("value", map_name);
-    });
-}
-
-
-function drawRegion(regionData){
+export function drawRegion(regionData){
+    // console.log(regionData)
     // How to load MDG REGIONS
     svg.append("g")
         .attr("class", "all_regions")
@@ -146,9 +49,10 @@ function drawRegion(regionData){
 Promise.all([
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-10m.json'),
     d3.json("./Data/MDG_adm2.topo.json"),
-    d3.csv("./Data/Olympics_Country.csv")])
+    d3.csv("./Data/Olympics_Country.csv"),
+    d3.json("./Data/Population/MDG_adm2_pop.json"),])
 
-    .then(function([world, adm_2,all_country_coordinate]){
+    .then(function([world, adm_2,all_country_coordinate,populationData]){
 
         // Filter data
         let countries = topojson.feature(world, world.objects.countries);
@@ -172,5 +76,6 @@ Promise.all([
         });
         
         howBig(countries,world,all_country_coordinate,regions);
+        // drawCartogram(countries,adm_2,populationData);
 })
 

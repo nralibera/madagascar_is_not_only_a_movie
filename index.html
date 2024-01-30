@@ -7,17 +7,23 @@
     href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Madagascar is not only a Movie</title>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
-    <!-- <script type="module" src="functions.js"></script> -->
-    <script src="app.js" defer></script>
+
+    <script src="https://d3js.org/d3.v5.min.js" defer></script>
+    <script src="https://d3js.org/topojson.v1.min.js" defer></script>
+    <script src="https://unpkg.com/topogram@1.0.1/build/topogram.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-array@3" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo@3" defer></script>
+    <script type="module" src="app.js" defer></script>
+    
     <!-- Add the stylesheet  style.css in the page-->
     <link rel="stylesheet" href="style.css">
-
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
+    <div class="header"> </div>
+    <div class="dataviz"> 
+        <svg id="my_dataviz" width="440" height="300"></svg>
+    </div>
     <!-- Create an element where the map will take place -->
-<svg id="my_dataviz" width="440" height="300"></svg>
 </body>
 </html>

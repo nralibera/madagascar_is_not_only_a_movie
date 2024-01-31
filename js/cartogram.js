@@ -1,20 +1,23 @@
-import { width, height, svg, path, projection, drawRegion } from './app.js';
-// import {cartogram} from './cartogram.js';
+import {width, height, path, projection, drawRegion } from './app.js';
 
-
-const regionGroup = d3.select("svg").append('g').attr("class", "all_regions");
-// generate 22 random colors
-const randomColorList = [...Array(22)].map(() => '#'+(Math.random()*0xFFFFFF<<0).toString(16).padStart(6, '0'));
-
+// // The svg
+// const width = window.innerWidth*0.95;
+// const height = window.innerHeight*0.95;
 
 let scale;
 
 export function drawCartogram(countries,regions,populationData){
+        // Draw the map
+    const svg = d3.select(".myDataviz");
+
+
+    const regionGroup = svg.append('g').attr("class", "all_regions");
+
+    const randomColorList = [...Array(22)].map(() => '#'+(Math.random()*0xFFFFFF<<0).toString(16).padStart(6, '0'));
 
     let cartogram = topogram.cartogram()
                     .projection(projection)
                     .properties(function(d) {
-                        // console.log(d);
                         return d.properties;
                     })
                     .value((d) => {  
@@ -47,7 +50,7 @@ export function drawCartogram(countries,regions,populationData){
     // add year select and update cartogram
     const yearList = [...Array(10)].map((_,i)=>2009+i);
 
-    const select = d3.select(".dataviz")
+    const select = d3.select(".mapOptions")
         .append("select")
         .attr("class","yearSelect")
         .attr("value",yearList[0])
@@ -65,32 +68,14 @@ export function drawCartogram(countries,regions,populationData){
         .text(d=>d)
     
     update(cartogram,regions,populationData,scaleColor);
-
-    // d3.select("svg")
-    //     .append("select")
-    //     .attr("class","yearSelect")
-
-    //     .on("change",function(){
-    //     });
-    
-
-    // console.log(features)
-    
-    // regionGroup.selectAll(".regions")
-    //     .data(features)
-    //     .enter()
-    //     .append("path")
-    //     .attr("d", cartogram.path)
-    //     .attr("class", "regions")
-    //     .attr("fill", "#FA6900");
 }
   
 function init(cartogram,regions,scaleColor){
 
     const features = cartogram.features(regions, regions.objects.states.geometries);
     // console.log(features)
-    regionGroup
-    .selectAll(".regions")
+    const regionGroup = d3.select(".all_regions");
+    regionGroup.selectAll(".regions")
     .data(features)
           .enter()
           .append("path")
@@ -100,7 +85,7 @@ function init(cartogram,regions,scaleColor){
 }
 
 function update(cartogram,regions,populationData,scaleColor){
-    console.log("update")
+    // console.log("update")
     const year = d3.select(".yearSelect").property("value");
 
     // // get all pop of 2018 from populationData in the field P_2018est as a list
@@ -122,7 +107,7 @@ function update(cartogram,regions,populationData,scaleColor){
     // Update value of cartogram
     cartogram.value((d) => {  
         const pop = +populationData.data.filter(e => e.ADM1_EN == d.properties.NAME_2)[0][yearString];
-        console.log(d.properties.NAME_2,pop,scale(pop))
+        // console.log(d.properties.NAME_2,pop,scale(pop))
         return scale(pop);
     });
 
@@ -131,7 +116,7 @@ function update(cartogram,regions,populationData,scaleColor){
     const features = cartogram(regions, regions.objects.states.geometries).features;
 
     // update the data
-    regionGroup
+    d3.select(".all_regions")
         .selectAll(".regions")
         .data(features)
         .join("path")

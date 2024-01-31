@@ -1,14 +1,14 @@
-import { width, height, svg, path, drawRegion } from './app.js';
+import { width, height, mapScale,mapTranslate,path, drawRegion } from './app.js';
 
-export function drawSecondCountries(mapName,countryPathData,centerCoordinateData){
+function drawSecondCountries(mapName,countryPathData,centerCoordinateData){
     let second_countries = topojson.feature(countryPathData, countryPathData.objects.countries);
     second_countries.features = second_countries.features.filter(function(d){ return d.properties.name==mapName});
 
     const averageCenter = centerCoordinateData.filter(function(d){ return d.map_name==mapName})[0];
-    const projection2 = d3.geoMercator()
-    .center([averageCenter.long, averageCenter.lat])                
-    .scale(1500)
-    .translate([ width/2, height/1.5 ])
+    const projection2 = d3.geoOrthographic()
+    .rotate([-averageCenter.long, -averageCenter.lat])                
+    .scale(mapScale)
+    .translate(mapTranslate)
     const path2 = d3.geoPath().projection(projection2);
 
     // Define the drag behavior using D3's drag() function
@@ -58,6 +58,9 @@ export function drawSecondCountries(mapName,countryPathData,centerCoordinateData
 export function howBig (countries,world,all_country_coordinate,regions){
 
     // Draw the map
+    const svg = d3.select(".myDataviz"); 
+                  // .call(zoomed);
+
     svg.append("g")
         .attr("class", "all_countries")
         .selectAll(".country")
@@ -70,7 +73,7 @@ export function howBig (countries,world,all_country_coordinate,regions){
     drawRegion(regions);
 
     // Create a dropdown input
-    const dropdown = d3.select("body")
+    const dropdown = d3.select(".mapOptions")
     .append("select")
     .attr("id", "countrySelect")
     .on("change", function() {
@@ -87,7 +90,7 @@ export function howBig (countries,world,all_country_coordinate,regions){
     .attr("value", d => d.map_name);
 
     // Add a random button to trigger the drawSecondCountries function
-    d3.select("body")
+    d3.select(".mapOptions")
     .append("button")
     .attr("class", "randomButton")
     .text("Random Country")

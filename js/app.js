@@ -2,18 +2,28 @@ import { howBig } from "./howBig.js";
 import { drawCartogram } from "./cartogram.js";
 
 // The svg
-export const width = window.innerWidth*0.95;
-export const height = window.innerHeight*0.95;
+export const width = window.innerWidth;
+export const height = window.innerHeight;
 
-export const svg = d3.select("#my_dataviz")
-            .attr("width", width)
-            .attr("height", height);
+const mapOptions = d3.select(".dataviz")
+                        .append("div")
+                        .attr("class","mapOptions");
+
+export const svg = d3.select(".dataviz")
+                        .append("svg")
+                        .attr("class","myDataviz")
+                        .attr("width", width)
+                        .attr("height", height);
+// Map Options
+export const mapScale = 1800;
+export const mapTranslate = [ width/2, height/1.9 ];
 
 // Map and projection
-export const projection = d3.geoMercator()
-    .center([47.448,-21.397180])        
-    .scale(4000)                      
-    .translate([ width/2, height/1.5 ])
+export const projection = d3.geoOrthographic()
+    // .center([47.448,-21.397180])   
+    .rotate([-47.448,21.397180])        
+    .scale(mapScale)                      
+    .translate(mapTranslate)
 
 
 export const path = d3.geoPath().projection(projection);
@@ -23,6 +33,13 @@ svg.call(d3.zoom().on('zoom',()=>{
     d3.select(".all_countries").attr("transform", d3.event.transform);
     d3.select(".all_regions").attr("transform", d3.event.transform);
     }));
+
+// export function zoomed(event) {
+//     return d3.zoom().on('zoom',()=>{
+//         d3.select(".all_countries").attr("transform", d3.event.transform);
+//         d3.select(".all_regions").attr("transform", d3.event.transform);
+//         })
+// }
 
 export function drawRegion(regionData){
     // console.log(regionData)
@@ -48,10 +65,9 @@ export function drawRegion(regionData){
 // Load external data and boot
 Promise.all([
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-10m.json'),
-    d3.json("./Data/MDG_adm2.topo.json"),
-    d3.csv("./Data/Olympics_Country.csv"),
-    d3.json("./Data/Population/MDG_adm2_pop.json"),])
-
+    d3.json("../Data/MDG_adm2.topo.json"),
+    d3.csv("../Data/Olympics_Country.csv"),
+    d3.json("../Data/Population/MDG_adm2_pop.json"),])
     .then(function([world, adm_2,all_country_coordinate,populationData]){
 
         // Filter data
@@ -75,7 +91,31 @@ Promise.all([
             return !pos || item.map_name != ary[pos - 1].map_name;
         });
         
+        const header = d3.select(".header");
+
+        // Add button for each map on header
+        header.append('div')
+            .attr('class', 'button')
+            .on('click', function(event, d) {
+                // console.log(d.map_name)
+                d3.select(".mapOptions").selectAll("*").remove();
+                d3.select(".myDataviz").selectAll("*").remove();
+                howBig(countries,world,all_country_coordinate,regions);
+            })
+            .text('How Big?');
+        
+        header.append('div')
+            .attr('class', 'button')
+            .on('click', function(event, d) {
+                // console.log(d.map_name)
+                d3.select(".mapOptions").selectAll("*").remove();
+                d3.select(".myDataviz").selectAll("*").remove();
+                drawCartogram(countries,adm_2,populationData,d.map_name);
+            })
+            .text('Population');
+
+        // Default map    
         howBig(countries,world,all_country_coordinate,regions);
-        // drawCartogram(countries,adm_2,populationData);
+        
 })
 

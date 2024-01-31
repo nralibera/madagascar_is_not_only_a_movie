@@ -65,9 +65,9 @@ export function drawRegion(regionData){
 // Load external data and boot
 Promise.all([
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-10m.json'),
-    d3.json("../Data/MDG_adm2.topo.json"),
-    d3.csv("../Data/Olympics_Country.csv"),
-    d3.json("../Data/Population/MDG_adm2_pop.json"),])
+    d3.json("Data/MDG_adm2.topo.json"),
+    d3.csv("Data/Olympics_Country.csv"),
+    d3.json("Data/Population/MDG_adm2_pop.json"),])
     .then(function([world, adm_2,all_country_coordinate,populationData]){
 
         // Filter data

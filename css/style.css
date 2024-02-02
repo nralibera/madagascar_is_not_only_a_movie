@@ -16,7 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 1rem;
+  padding: .5rem 1rem .5rem 1rem;
   background-color: rgb(5, 0, 58);
   font-size: small;
 }
@@ -37,7 +37,7 @@ body {
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 1rem;
+  padding: .5rem 1rem .5rem 1rem;
   margin: 0 1rem;
   /* font-family: 'Poppins'; */
 }
@@ -118,18 +118,15 @@ datalist {
   border: none;
   background-color:  rgb(5, 0, 58);
   color: #f5f1f1;
+  width: 12rem;
 }
 
-@media (min-width: 600px) {
-  select {
-    top: 5rem;
-    left: 5rem;
-    width: 12rem;
+@media (max-width: 600px) {
+  .slider{
+    width: 90%;
   }
   .randomButton{
-    top: 5rem;
-    left: 20rem;
-    width: 12rem;
+    width: auto;
   }
 }
 

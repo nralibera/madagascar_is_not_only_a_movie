@@ -14,7 +14,7 @@ export const svg = d3.select(".map")
                         .attr("height", height);
 // Map Options
 export const mapScale = 1800;
-export const mapTranslate = [ width/2, height/2 ];
+export const mapTranslate = [ width/2, height/2.1 ];
 
 // Map and projection
 export const projection = d3.geoOrthographic()

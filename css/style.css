@@ -5,6 +5,7 @@ body {
   align-items: center;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
+  /* overflow-x: hidden; */
   background-color: rgb(2, 0, 22);
   color : white;
   margin: 0;
@@ -32,7 +33,7 @@ body {
   /* font-size: small; */
 }
 
-.button{
+button, .button{
   background-color: rgb(3, 0, 36);
   color: white;
   border: none;
@@ -42,11 +43,20 @@ body {
   /* font-family: 'Poppins'; */
 }
 
-.button:hover{
+button:hover, .button:hover{
   cursor: pointer;
   background-color: rgb(9, 0, 102);
 }
 
+.popUpBarChart{
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  /* padding: 1rem;
+  font-size: small; */
+}
 .dataviz{
 display: flex;
 flex-direction: column;
@@ -72,6 +82,13 @@ font-size: small;
   color: white;
   padding: .3rem;
   border-radius: 5px;
+}
+
+.map{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* overflow: scroll; */
 }
 
 select{

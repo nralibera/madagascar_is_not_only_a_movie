@@ -211,8 +211,8 @@ function updateBarChart(regions,populationData){
 
     // / set the dimensions and margins of the graph
     const margin = {top: 10, right: 50, bottom: 20, left: 50},
-    width = 900 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    widthWithMargin = width*0.7 - margin.left - margin.right,
+    heightWithMargin = height*0.5 - margin.top - margin.bottom;
 
     // If svg exist use it else create it
     let svg = d3.select(".popUpBarChart").select(".barChart g");
@@ -221,8 +221,8 @@ function updateBarChart(regions,populationData){
         svg = d3.select(".popUpBarChart")
                 .append("svg")
                 .attr("class","barChart")            
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+                .attr("width", widthWithMargin + margin.left + margin.right)
+                .attr("height", heightWithMargin + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
@@ -241,12 +241,12 @@ function updateBarChart(regions,populationData){
     // Add X axis
     const x = d3.scaleBand()
         .domain(groups)
-        .range([0, width])
+        .range([0, widthWithMargin])
         .padding([0.2]);
 
     svg.append("g")
     .attr("class","axis")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0," + heightWithMargin + ")")
     .call(d3.axisBottom(x).tickSizeOuter(0));
 
     const sumOfPopIn2018 = Object.values(populationData[populationData.length-1]).reduce((a, b) => a + b, 0) - 2018;
@@ -254,7 +254,7 @@ function updateBarChart(regions,populationData){
     // Add Y axis
     const y = d3.scaleLinear()
                 .domain([0, sumOfPopIn2018])
-                .range([ height, 0 ]);
+                .range([ heightWithMargin, 0 ]);
 
     
     svg.append("g")

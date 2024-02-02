@@ -65,6 +65,15 @@ font-size: small;
   mix-blend-mode: hard-light;
 }
 
+.tooltip{
+  position: absolute;
+  font-family: 'Poppins';
+  background-color: rgb(22, 0, 0);
+  color: white;
+  padding: .3rem;
+  border-radius: 5px;
+}
+
 select{
   width: 35%;
   background-color: rgb(255, 255, 255);
@@ -76,6 +85,33 @@ select{
   margin: 0 1em 0 1em;
   font-family: 'Poppins';
 }
+
+.slider{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 1em 0 1em;
+}
+.yearSelect{
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  color:  rgb(4, 1, 48);
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 0;
+  font-size: .8em;
+  font-family: 'Poppins';
+}
+
+datalist {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* writing-mode: vertical-lr; */
+  width: 100%;
+}
+
 
 .randomButton{
   border-radius: 5px;

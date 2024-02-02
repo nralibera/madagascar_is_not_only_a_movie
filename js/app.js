@@ -5,18 +5,16 @@ import { drawCartogram } from "./cartogram.js";
 export const width = window.innerWidth;
 export const height = window.innerHeight;
 
-const mapOptions = d3.select(".dataviz")
-                        .append("div")
-                        .attr("class","mapOptions");
+const mapOptions = d3.select(".mapOptions");
 
-export const svg = d3.select(".dataviz")
+export const svg = d3.select(".map")
                         .append("svg")
                         .attr("class","myDataviz")
                         .attr("width", width)
                         .attr("height", height);
 // Map Options
 export const mapScale = 1800;
-export const mapTranslate = [ width/2, height/1.9 ];
+export const mapTranslate = [ width/2, height/2 ];
 
 // Map and projection
 export const projection = d3.geoOrthographic()
@@ -97,9 +95,7 @@ Promise.all([
         header.append('div')
             .attr('class', 'button')
             .on('click', function(event, d) {
-                // console.log(d.map_name)
-                d3.select(".mapOptions").selectAll("*").remove();
-                d3.select(".myDataviz").selectAll("*").remove();
+                clearMap();
                 howBig(countries,world,all_country_coordinate,regions);
             })
             .text('How Big?');
@@ -107,15 +103,22 @@ Promise.all([
         header.append('div')
             .attr('class', 'button')
             .on('click', function(event, d) {
-                // console.log(d.map_name)
-                d3.select(".mapOptions").selectAll("*").remove();
-                d3.select(".myDataviz").selectAll("*").remove();
-                drawCartogram(countries,adm_2,populationData,d.map_name);
+                clearMap();
+                drawCartogram(countries,adm_2,populationData);
             })
             .text('Population');
 
         // Default map    
-        howBig(countries,world,all_country_coordinate,regions);
+        drawCartogram(countries,adm_2,populationData);
+        // howBig(countries,world,all_country_coordinate,regions);
         
 })
 
+function clearMap(){
+    d3.select(".mapOptions").selectAll("*").remove();
+    // Select all .myDataviz and remove all children except the first
+    d3.selectAll(".map").each(function() {
+        d3.select(this).selectAll("*:not(:first-child)").remove();
+      });
+      d3.select(".myDataviz").selectAll("*").remove();
+}

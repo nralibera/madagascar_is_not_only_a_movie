@@ -1,41 +1,18 @@
-import {width, height, path, projection, drawRegion } from './app.js';
+import {width, height, path } from './app.js';
 
-// // The svg
-// const width = window.innerWidth*0.95;
-// const height = window.innerHeight*0.95;
-
-let scale;
-
-export function drawCartogram(countries,regionsTopo,populationData){
+export function drawPopulationMap(regionsTopo,populationData){
     const stackedPopulationData = buildStackedData(populationData);
+    console.log(stackedPopulationData);
         // Draw the map
     const svg = d3.select(".myDataviz");
     const regions = topojson.feature(regionsTopo, regionsTopo.objects.states);
 
-
-    const regionGroup = svg.append('g').attr("class", "all_regions");
-
-    const randomColorList = [...Array(22)].map(() => '#'+(Math.random()*0xFFFFFF<<0).toString(16).padStart(6, '0'));
-
-    let cartogram = topogram.cartogram()
-                    .projection(projection)
-                    .properties(function(d) {
-                        return d.properties;
-                    })
-                    .value((d) => {  
-        // console.log(scale(+populationData.data.filter(e=>e.ADM1_EN==d.properties.NAME_2)[0].P_2018est));
-        // This function should return the value for each feature
-        return scale(+populationData.data.filter(e=>e.ADM1_EN==d.properties.NAME_2)[0].P_2018est);}); 
-
-    // const scaleColor = d3.scaleOrdinal()
-    //     .domain(regions.geometries.map(d=>d.properties.NAME_2))
-    //     .range(randomColorList);
-
-    const scaleColor = d3.scaleOrdinal();
-   
+    // Create a new 'g' SVG group element with the class 'all_regions' to contain the regions
+    svg.append('g').attr("class", "all_regions");
     
     let lowValue = 0;
     let highValue = 0;
+
     // calculate the scale of population for all years
     for (let i = 2009; i < 2019; i++) {
         const yearString = i == 2009 ? "P_"+i :"P_"+i+"est";
@@ -45,12 +22,82 @@ export function drawCartogram(countries,regionsTopo,populationData){
         highValue = popAtYear[popAtYear.length-1] > highValue ? popAtYear[popAtYear.length-1] : highValue;
         // console.log(lowValue,highValue)
     }
-    const ceiledHighValue = Math.ceil(highValue/1000000)*1000000;
-    const  flooredLowValue = Math.floor(lowValue/1000000)*1000000;
+    const ceiledHighValue = Math.ceil(highValue/1000000)*1000000; // round up to the nearest million
+    const  flooredLowValue = Math.floor(lowValue/1000000)*1000000; // round down to the nearest million
 
-    const scaleLinear = d3.scaleLinear().domain([flooredLowValue, ceiledHighValue]).range([0, 1]);
+
+    const scaleLinear = d3.scaleLinear()
+                          .domain([flooredLowValue, ceiledHighValue])
+                          .range([0, 1]);
+
     const colorScale = d3.scaleSequential(d3.interpolateOranges);
+    
+    // Create legend 
+    createLegend(colorScale, scaleLinear,flooredLowValue,ceiledHighValue);
 
+    // add year select and update the map
+    const yearList = [...Array(10)].map((_,i)=>2009+i);
+
+    // Add slider to select year
+    createSlider(yearList,regions,populationData,colorScale,scaleLinear);
+
+    // initialize the map
+    updateMap(regions,populationData,colorScale,scaleLinear);
+    
+    // Create a div to contain the bar chart
+    const divForBarChart = d3.select(".map")
+                            .append("div")
+                            .attr("class","popUpBarChart")
+                            .style("width", "100%")
+                            .style("height", "100%")
+                            .style("position","absolute")
+                            .style("top",0)
+                            .style("left",0)
+                            .style("z-index",1000)
+                            .style("background-color","rgb(2, 0, 22)")
+                            .style("display","none");
+
+    // Add button to show bar chart
+    d3.select(".mapOptions").append("button")
+    .text("Global population")
+    .on("click", function(){
+        d3.select(".popUpBarChart").style("display","flex");
+        updateBarChart(regions,stackedPopulationData);
+    });
+
+    // Add button to close bar chart
+    d3.select('.popUpBarChart').append("button")
+    .text("Close Bar Chart")
+    .on("click", function(){
+        d3.select(".popUpBarChart").style("display","none");
+    });
+
+}
+
+function createSlider(yearList,regions,populationData,colorScale,scaleLinear){
+
+    const slider = d3.select(".mapOptions").append("div").attr("class","slider");
+
+    slider.append("input")
+        .attr("type", "range")
+        .attr("min", yearList[0]) // Assuming yearList is sorted
+        .attr("max", yearList[yearList.length - 1])
+        .attr("value", yearList[0])
+        .attr("list", "tickmarks")
+        .attr("class", "yearSelect")
+        .on("input", function() {
+            updateMap(regions, populationData, colorScale, scaleLinear);
+        });
+    
+    const tickmarks = slider.append("datalist").attr("id", "tickmarks");
+    tickmarks.selectAll("option")
+        .data(yearList)
+        .join("option")
+        .attr("value", d=>d)
+        .text(d=>d);
+}
+
+function createLegend(colorScale, scaleLinear,flooredLowValue,ceiledHighValue){
         // Define the legend
     const legend = d3.select(".myDataviz").append("svg")
                     .attr("class", "legend")
@@ -87,62 +134,6 @@ export function drawCartogram(countries,regionsTopo,populationData){
     .style("fill", "rgb(2, 0, 22)")
     .text(d => d/1000000)
     .attr('fill', 'black'); 
-
-
-    // add year select and updateMap cartogram
-    const yearList = [...Array(10)].map((_,i)=>2009+i);
-
-
-    const slider = d3.select(".mapOptions").append("div").attr("class","slider");
-
-
-    slider.append("input")
-        .attr("type", "range")
-        .attr("min", yearList[0]) // Assuming yearList is sorted
-        .attr("max", yearList[yearList.length - 1])
-        .attr("value", yearList[0])
-        .attr("list", "tickmarks")
-        .attr("class", "yearSelect")
-        .on("input", function() {
-            updateMap(regions, populationData, colorScale, scaleLinear);
-        });
-    
-    const tickmarks = slider.append("datalist").attr("id", "tickmarks");
-    tickmarks.selectAll("option")
-        .data(yearList)
-        .join("option")
-        .attr("value", d=>d)
-        .text(d=>d);
-
-    updateMap(regions,populationData,colorScale,scaleLinear);
-    // updateBarChart("a",regions,stackedPopulationData);
-    
-    const divForBarChart = d3.select(".map")
-                            .append("div")
-                            .attr("class","popUpBarChart")
-                            .style("width", "100%")
-                            .style("height", "100%")
-                            .style("position","absolute")
-                            .style("top",0)
-                            .style("left",0)
-                            .style("z-index",1000)
-                            .style("background-color","rgb(2, 0, 22)")
-                            .style("display","none");
-
-    // Add button to show bar chart
-    d3.select(".mapOptions").append("button")
-    .text("Global population")
-    .on("click", function(){
-        d3.select(".popUpBarChart").style("display","flex");
-        updateBarChart(regions,stackedPopulationData);
-    });
-    // Add button to close bar chart
-    d3.select('.popUpBarChart').append("button")
-    .text("Close Bar Chart")
-    .on("click", function(){
-        d3.select(".popUpBarChart").style("display","none");
-    });
-
 }
 
 function updateMap(regions,populationData,colorScale,scaleLinear){

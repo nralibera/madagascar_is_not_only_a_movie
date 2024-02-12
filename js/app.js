@@ -125,8 +125,8 @@ Promise.all([
             .text('Population');
 
         // Choose the Default map here    
-        drawPopulationMap(adm_2,populationData);
-        // howBig(countries,world,all_country_coordinate,regions);
+        // drawPopulationMap(adm_2,populationData);
+        howBig(countries,world,all_country_coordinate,regions);
         
 })
 

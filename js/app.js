@@ -29,6 +29,7 @@ export const path = d3.geoPath().projection(projection);
 svg.call(d3.zoom().on('zoom',()=>{
     d3.select(".all_countries").attr("transform", d3.event.transform);
     d3.select(".all_regions").attr("transform", d3.event.transform);
+    d3.select(".all_towns").attr("transform", d3.event.transform);
     }));
 
 
@@ -57,6 +58,65 @@ export function drawRegion(regionData){
 }
 
 /**
+ * This function is used to draw main towns on a map.
+ * It takes GeoJSON data for regions and towns as input and appends SVG elements to represent each town.
+ *
+ * @param {Object} regions - The GeoJSON data representing the regions.
+ * @param {Object} townData - The GeoJSON data representing the towns.
+ */
+export function drawMainTowns(regions, townData){
+    // Get all name_1 in regions
+    const mainTowns = regions.features.map(d => d.properties.NAME_1.toLowerCase());
+    // Remove duplicates
+    const uniqueMainTowns = [...new Set(mainTowns)];
+
+    const townDataCopy = townData;
+    // Filter features only on town in townList
+    townDataCopy.features = townDataCopy.features.filter((d) => {
+        const townName = d.properties.PPPTNAME;
+        if (townName){
+            return uniqueMainTowns.includes(townName.toLowerCase());
+        }
+    });
+
+    // Draw town points
+    svg.append('g')
+       .attr('class', "all_towns")
+       .selectAll('.townPoint')
+       .data(townDataCopy.features)
+       .join('circle')
+       .attr('class', 'townPoint')
+       .attr('r', 3)
+       .attr('fill', '#FF5733')
+       .attr("transform", function(d) {
+            return "translate(" + projection([
+                d.geometry.coordinates[0],
+                d.geometry.coordinates[1]
+            ]) + ")";
+        });
+
+    // Add town names
+    d3.select('.all_towns')
+      .selectAll('.townName')
+      .data(townDataCopy.features)
+      .join('text')
+      .attr("fill", "white")
+      .attr("text-anchor", "middle")
+      .attr("dy", "-.8em") 
+      .style('font-size', ".7em")
+      .text(function(d) {
+            return d.properties.PPPTNAME;
+        })
+        .attr("transform", function(d) {
+            return "translate(" + projection([
+                d.geometry.coordinates[0],
+                d.geometry.coordinates[1]
+            ]) + ")";
+        });   
+}
+
+
+/**
  * This function is used to clear the map visualization.
  * It removes all child elements of the selected elements.
  * Specifically, it targets elements with the classes ".mapOptions", ".map", and ".myDataviz".
@@ -79,13 +139,13 @@ Promise.all([
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-10m.json'),
     d3.json("Data/mdg_geojson/MDG_adm2.topo.json"),
     d3.csv("Data/world_country.csv"),
-    d3.json("Data/Population/MDG_adm2_pop.json"),])
-    .then(function([world, adm_2,all_country_coordinate,populationData]){
+    d3.json("Data/Population/MDG_adm2_pop.json"),
+    d3.json("Data/mdg_geolocated_towns.geojson")])
+    .then(function([world, adm_2,all_country_coordinate,populationData,townData]){
 
         // Filter data
-        let countries = topojson.feature(world, world.objects.countries);
-        let regions = topojson.feature(adm_2, adm_2.objects.states); // For Madagascar Regions
-        
+        const countries = topojson.feature(world, world.objects.countries);
+        const regions = topojson.feature(adm_2, adm_2.objects.states); // For Madagascar Regions
         
         // Draw Madagascar
         countries.features = countries.features.filter(function(d){ return d.properties.name=="Madagascar"})
@@ -111,7 +171,7 @@ Promise.all([
             .attr('class', 'button')
             .on('click', function(event, d) {
                 clearMap();
-                howBig(countries,world,all_country_coordinate,regions);
+                howBig(countries,world,all_country_coordinate,regions,townData);
             })
             .text('How Big?');
 
@@ -126,7 +186,7 @@ Promise.all([
 
         // Choose the Default map here    
         // drawPopulationMap(adm_2,populationData);
-        howBig(countries,world,all_country_coordinate,regions);
+        howBig(countries,world,all_country_coordinate,regions,townData);
         
 })
 

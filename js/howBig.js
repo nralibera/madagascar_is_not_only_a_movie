@@ -1,4 +1,4 @@
-import { width, height, mapScale,mapTranslate,path, drawRegion } from './app.js';
+import { width, height, mapScale,mapTranslate,path, drawRegion, drawMainTowns } from './app.js';
 
 function drawSecondCountries(mapName,countryPathData,centerCoordinateData){
     let second_countries = topojson.feature(countryPathData, countryPathData.objects.countries);
@@ -55,7 +55,7 @@ function drawSecondCountries(mapName,countryPathData,centerCoordinateData){
           )
 }
 
-export function howBig (countries,world,all_country_coordinate,regions){
+export function howBig (countries,world,all_country_coordinate,regions,townData){
 
     // Draw the map
     const svg = d3.select(".myDataviz"); 
@@ -68,10 +68,11 @@ export function howBig (countries,world,all_country_coordinate,regions){
         .join("path")
         .attr("class", "country")
           .attr("fill", "#00ccbc")
-          .attr("d", path)
+          .attr("d", path);
     
     drawRegion(regions);
-
+    drawMainTowns(regions,townData);
+    
     // Create a dropdown input
     const dropdown = d3.select(".mapOptions")
     .append("select")
